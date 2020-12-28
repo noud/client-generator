@@ -18,7 +18,16 @@ export function fetch(id, options = {}) {
   )
     options.headers.set('Content-Type', MIME_TYPE);
 
-  return global.fetch(new URL(id, ENTRYPOINT), options).then(response => {
+    let entryPoint = ENTRYPOINT;
+    switch ('{{{dataProtocol}}}') {
+      case "swagger":
+      case "openapi3":
+        if (options.entity) {
+          entryPoint += options.entity + '/';
+        }
+      }
+
+    return global.fetch(new URL(id, entryPoint), options).then(response => {
     if (response.ok) return response;
 
     return response.json().then(

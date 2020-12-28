@@ -35,11 +35,18 @@ class Show extends Component {
   render() {
     if (this.props.deleted) return <Redirect to=".." />;
 
-    const item = this.props.retrieved;
+    let item = this.props.retrieved;
+    switch ('{{{dataProtocol}}}') {
+      case "swagger":
+      case "openapi3":
+        if (item) {
+          item = item.data;
+        }
+    }
 
     return (
       <div>
-        <h1>Show {item && item['@id']}</h1>
+        <h1>Show {item && item['{{{dataIdName}}}']}</h1>
 
         {this.props.loading && (
           <div className="alert alert-info" role="status">
@@ -81,7 +88,7 @@ class Show extends Component {
           Back to list
         </Link>
         {item && (
-          <Link to={`/{{{name}}}/edit/${encodeURIComponent(item['@id'])}`}>
+          <Link to={`/{{{name}}}/edit/${encodeURIComponent(item['{{{dataIdName}}}'])}`}>
             <button className="btn btn-warning">Edit</button>
           </Link>
         )}

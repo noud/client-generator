@@ -21,7 +21,13 @@ export function retrieve(id) {
   return dispatch => {
     dispatch(loading(true));
 
-    return fetch(id)
+    let options = null;
+    switch ('{{{dataProtocol}}}') {
+      case "swagger":
+      case "openapi3":
+        options = {entity: '{{{lc}}}'};
+    }
+    return fetch(id, options)
       .then(response =>
         response
           .json()
@@ -33,7 +39,7 @@ export function retrieve(id) {
         dispatch(loading(false));
         dispatch(success(retrieved));
 
-        if (hubURL) dispatch(mercureSubscribe(hubURL, retrieved['@id']));
+        if (hubURL) dispatch(mercureSubscribe(hubURL, retrieved['{{{dataIdName}}}']));
       })
       .catch(e => {
         dispatch(loading(false));

@@ -16,7 +16,15 @@ export function del(item) {
   return dispatch => {
     dispatch(loading(true));
 
-    return fetch(item['@id'], { method: 'DELETE' })
+    let options = {
+      method: 'DELETE'
+    };
+    switch ('{{{dataProtocol}}}') {
+      case "swagger":
+      case "openapi3":
+        options = {entity: '{{{lc}}}'};
+    }
+    return fetch(item['{{{dataIdName}}}'], options)
       .then(() => {
         dispatch(loading(false));
         dispatch(success(item));

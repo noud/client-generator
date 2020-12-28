@@ -117,7 +117,8 @@ parser(entrypointWithSlash)
         resource.readableFields = filterDeprecated(resource.readableFields);
         resource.writableFields = filterDeprecated(resource.writableFields);
 
-        generator.generate(ret.api, resource, outputDirectory, serverPath);
+        // generator.generate(ret.api, resource, outputDirectory, serverPath);
+        generator.generate(ret.api, resource, outputDirectory, program.format);
 
         return resource;
       })

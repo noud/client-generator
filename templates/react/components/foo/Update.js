@@ -40,20 +40,28 @@ class Update extends Component {
   render() {
     if (this.props.deleted) return <Redirect to=".." />;
 
-    const item = this.props.updated ? this.props.updated : this.props.retrieved;
+    let thisPropsRetrieved = this.props.retrieved;
+    switch ('{{{dataProtocol}}}') {
+      case "swagger":
+      case "openapi3":
+        if (thisPropsRetrieved) {
+          thisPropsRetrieved = thisPropsRetrieved.data;
+        }
+    }
+    const item = this.props.updated ? this.props.updated : thisPropsRetrieved;
 
     return (
       <div>
-        <h1>Edit {item && item['@id']}</h1>
+        <h1>Edit {item && item['{{{dataIdName}}}']}</h1>
 
         {this.props.created && (
           <div className="alert alert-success" role="status">
-            {this.props.created['@id']} created.
+            {this.props.created['{{{dataIdName}}}']} created.
           </div>
         )}
         {this.props.updated && (
           <div className="alert alert-success" role="status">
-            {this.props.updated['@id']} updated.
+            {this.props.updated['{{{dataIdName}}}']} updated.
           </div>
         )}
         {(this.props.retrieveLoading ||

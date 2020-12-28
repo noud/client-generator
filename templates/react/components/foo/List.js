@@ -44,7 +44,7 @@ class List extends Component {
         )}
         {this.props.deletedItem && (
           <div className="alert alert-success">
-            {this.props.deletedItem['@id']} deleted.
+            {this.props.deletedItem['{{{dataIdName}}}']} deleted.
           </div>
         )}
         {this.props.error && (
@@ -69,24 +69,24 @@ class List extends Component {
           </thead>
           <tbody>
             {this.props.retrieved &&
-              this.props.retrieved['hydra:member'].map(item => (
-                <tr key={item['@id']}>
+              this.props.retrieved['{{{dataContainerName}}}'].map(item => (
+                <tr key={item['{{{dataIdName}}}']}>
                   <th scope="row">
-                    <Link to={`show/${encodeURIComponent(item['@id'])}`}>
-                      {item['@id']}
+                    <Link to={`show/${encodeURIComponent(item['{{{dataIdName}}}'])}`}>
+                      {item['{{{dataIdName}}}']}
                     </Link>
                   </th>
 {{#each fields}}
                   <td>{{#if reference}}{this.renderLinks('{{{reference.name}}}', item['{{{name}}}'])}{{else}}{item['{{{name}}}']}{{/if}}</td>
 {{/each}}
                   <td>
-                    <Link to={`show/${encodeURIComponent(item['@id'])}`}>
+                    <Link to={`show/${encodeURIComponent(item['{{{dataIdName}}}'])}`}>
                       <span className="fa fa-search" aria-hidden="true" />
                       <span className="sr-only">Show</span>
                     </Link>
                   </td>
                   <td>
-                    <Link to={`edit/${encodeURIComponent(item['@id'])}`}>
+                    <Link to={`edit/${encodeURIComponent(item['{{{dataIdName}}}'])}`}>
                       <span className="fa fa-pencil" aria-hidden="true" />
                       <span className="sr-only">Edit</span>
                     </Link>

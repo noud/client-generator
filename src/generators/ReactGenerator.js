@@ -66,10 +66,22 @@ combineReducers({ ${titleLc},/* ... */ }),
     );
   }
 
-  generate(api, resource, dir) {
+  generate(api, resource, dir, apiProtocol) {
     const lc = resource.title.toLowerCase();
     const titleUcFirst =
       resource.title.charAt(0).toUpperCase() + resource.title.slice(1);
+
+    let dataProtocol = "hydra";
+    let dataContainerName = "hydra:member";
+    let dataIdName = "@id";
+
+    switch (apiProtocol) {
+      case "swagger":
+      case "openapi3":
+        dataProtocol = "swagger";
+        dataContainerName = "data";
+        dataIdName = "id";
+    }
 
     const context = {
       title: resource.title,
@@ -79,7 +91,11 @@ combineReducers({ ${titleLc},/* ... */ }),
       fields: resource.readableFields,
       formFields: this.buildFields(resource.writableFields),
       hydraPrefix: this.hydraPrefix,
-      titleUcFirst
+      titleUcFirst,
+      dataProtocol,
+      dataContainerName,
+      dataIdName
+      // dataPagination
     };
 
     // Create directories

@@ -24,7 +24,13 @@ export function retrieve(id) {
   return dispatch => {
     dispatch(retrieveLoading(true));
 
-    return fetch(id)
+    let options = null;
+    switch ('{{{dataProtocol}}}') {
+      case "swagger":
+      case "openapi3":
+        options = {entity: '{{{lc}}}'};
+    }
+    return fetch(id, options)
       .then(response =>
         response
           .json()
@@ -36,7 +42,7 @@ export function retrieve(id) {
         dispatch(retrieveLoading(false));
         dispatch(retrieveSuccess(retrieved));
 
-        if (hubURL) dispatch(mercureSubscribe(hubURL, retrieved['@id']));
+        if (hubURL) dispatch(mercureSubscribe(hubURL, retrieved['{{{dataIdName}}}']));
       })
       .catch(e => {
         dispatch(retrieveLoading(false));
@@ -63,11 +69,17 @@ export function update(item, values) {
     dispatch(createSuccess(null));
     dispatch(updateLoading(true));
 
-    return fetch(item['@id'], {
+    let options = {
       method: 'PUT',
       headers: new Headers({ 'Content-Type': 'application/ld+json' }),
       body: JSON.stringify(values)
-    })
+    };
+    switch ('{{{dataProtocol}}}') {
+      case "swagger":
+      case "openapi3":
+        options = {entity: '{{{lc}}}'};
+    }
+    return fetch(item['{{{dataIdName}}}'], options)
       .then(response =>
         response
           .json()
@@ -79,7 +91,7 @@ export function update(item, values) {
         dispatch(updateLoading(false));
         dispatch(updateSuccess(retrieved));
 
-        if (hubURL) dispatch(mercureSubscribe(hubURL, retrieved['@id']));
+        if (hubURL) dispatch(mercureSubscribe(hubURL, retrieved['{{{dataIdName}}}']));
       })
       .catch(e => {
         dispatch(updateLoading(false));
