@@ -81,6 +81,8 @@ combineReducers({ ${titleLc},/* ... */ }),
         dataProtocol = "swagger";
         dataContainerName = "data";
         dataIdName = "id";
+        break;
+      default:
     }
 
     const context = {
