@@ -28,8 +28,20 @@ class Show extends Component {
   }
 
   del = () => {
-    if (window.confirm('Are you sure you want to delete this item?'))
-      this.props.del(this.props.retrieved);
+    if (window.confirm('Are you sure you want to delete this item?')) {
+      let item = this.props.retrieved;
+      switch ('{{{dataProtocol}}}') {
+        case "swagger":
+        case "openapi3":
+          if (item) {
+            item = item.data;
+          }
+          break;
+        default:
+          // do nothing
+      }
+      this.props.del(item);
+    }
   };
 
   render() {
