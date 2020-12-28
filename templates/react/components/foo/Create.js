@@ -19,10 +19,21 @@ class Create extends Component {
   }
 
   render() {
-    if (this.props.created)
+    let thisPropsCreated = this.props.created;
+    switch ('{{{dataProtocol}}}') {
+      case "swagger":
+      case "openapi3":
+        if (thisPropsCreated) {
+          thisPropsCreated = thisPropsCreated.data;
+        }
+        break;
+      default:
+        // do nothing
+    }
+    if (thisPropsCreated)
       return (
         <Redirect
-          to={`edit/${encodeURIComponent(this.props.created['{{{dataIdName}}}'])}`}
+          to={`edit/${encodeURIComponent(thisPropsCreated['{{{dataIdName}}}'])}`}
         />
       );
 
