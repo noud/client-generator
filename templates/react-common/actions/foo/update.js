@@ -78,6 +78,9 @@ export function update(item, values) {
       case "swagger":
       case "openapi3":
         options = {entity: '{{{lc}}}'};
+        break;
+      default:
+        // do nothing
     }
     return fetch(item['{{{dataIdName}}}'], options)
       .then(response =>

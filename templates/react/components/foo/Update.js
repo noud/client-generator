@@ -47,6 +47,9 @@ class Update extends Component {
         if (thisPropsRetrieved) {
           thisPropsRetrieved = thisPropsRetrieved.data;
         }
+        break;
+      default:
+        // do nothing
     }
     const item = this.props.updated ? this.props.updated : thisPropsRetrieved;
 

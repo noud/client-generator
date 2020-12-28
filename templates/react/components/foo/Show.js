@@ -42,6 +42,9 @@ class Show extends Component {
         if (item) {
           item = item.data;
         }
+        break;
+      default:
+        // do nothing
     }
 
     return (

@@ -23,6 +23,9 @@ export function del(item) {
       case "swagger":
       case "openapi3":
         options = {entity: '{{{lc}}}'};
+        break;
+      default:
+        // do nothing
     }
     return fetch(item['{{{dataIdName}}}'], options)
       .then(() => {

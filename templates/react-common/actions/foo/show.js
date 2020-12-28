@@ -26,6 +26,9 @@ export function retrieve(id) {
       case "swagger":
       case "openapi3":
         options = {entity: '{{{lc}}}'};
+        break;
+      default:
+        // do nothing
     }
     return fetch(id, options)
       .then(response =>
