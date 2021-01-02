@@ -21,9 +21,8 @@ export function success(retrieved) {
 export function list(page) {
 
   if (!page) {
-    switch ('swagger') {
-      case "swagger":
-      case "openapi3":
+    switch ('{{{dataProtocol}}}') {
+      case "swagger-infyom":
           page = 1;
         break;
       default:
@@ -36,9 +35,8 @@ export function list(page) {
     dispatch(error(''));
 
     let options = [];
-    switch ('swagger') {
-      case "swagger":
-      case "openapi3":
+    switch ('{{{dataProtocol}}}') {
+      case "swagger-infyom":
           page = '?page=' + page;
           options.entity = '{{{name}}}';
           options.page = page;

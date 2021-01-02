@@ -41,6 +41,13 @@ npx @api-platform/client-generator https://demo.api-platform.com/docs.json outpu
 npx @api-platform/client-generator https://demo.api-platform.com/docs.json?spec_version=3 output/ --resource Book --format openapi3
 ```
 
+Also works with APIs built with the [InfyOmLabs Laravel Generator](https://www.infyom.com/open-source).
+
+**OpenAPI v2 (formerly known as Swagger)** (experimental and only for the React/Redux client)
+```sh
+npx @api-platform/client-generator https://demo.example.com/docs.json output/ --resource Book --format swagger-infyom
+```
+
 ## Features
 
 * Generate high-quality ES6 components and files built with [React](https://facebook.github.io/react/), [Redux](http://redux.js.org), [React Router](https://reacttraining.com/react-router/) and [Redux Form](http://redux-form.com/) including:

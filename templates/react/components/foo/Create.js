@@ -21,8 +21,7 @@ class Create extends Component {
   render() {
     let thisPropsCreated = this.props.created;
     switch ('{{{dataProtocol}}}') {
-      case "swagger":
-      case "openapi3":
+      case "swagger-infyom":
         if (thisPropsCreated) {
           thisPropsCreated = thisPropsCreated.data;
         }

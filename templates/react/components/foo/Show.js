@@ -31,8 +31,7 @@ class Show extends Component {
     if (window.confirm('Are you sure you want to delete this item?')) {
       let item = this.props.retrieved;
       switch ('{{{dataProtocol}}}') {
-        case "swagger":
-        case "openapi3":
+        case "swagger-infyom":
           if (item) {
             item = item.data;
           }
@@ -49,8 +48,7 @@ class Show extends Component {
 
     let item = this.props.retrieved;
     switch ('{{{dataProtocol}}}') {
-      case "swagger":
-      case "openapi3":
+      case "swagger-infyom":
         if (item) {
           item = item.data;
         }

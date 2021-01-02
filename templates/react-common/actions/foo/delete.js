@@ -20,8 +20,7 @@ export function del(item) {
       method: 'DELETE'
     };
     switch ('{{{dataProtocol}}}') {
-      case "swagger":
-      case "openapi3":
+      case "swagger-infyom":
         options = {entity: '{{{lc}}}'};
         break;
       default:

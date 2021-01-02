@@ -26,8 +26,7 @@ export function retrieve(id) {
 
     let options = null;
     switch ('{{{dataProtocol}}}') {
-      case "swagger":
-      case "openapi3":
+      case "swagger-infyom":
         options = {entity: '{{{lc}}}'};
     }
     return fetch(id, options)
@@ -75,8 +74,7 @@ export function update(item, values) {
       body: JSON.stringify(values)
     };
     switch ('{{{dataProtocol}}}') {
-      case "swagger":
-      case "openapi3":
+      case "swagger-infyom":
         options = {entity: '{{{lc}}}'};
         break;
       default:

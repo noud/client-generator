@@ -76,9 +76,8 @@ combineReducers({ ${titleLc},/* ... */ }),
     let dataIdName = "@id";
 
     switch (apiProtocol) {
-      case "swagger":
-      case "openapi3":
-        dataProtocol = "swagger";
+      case "swagger-infyom":
+        dataProtocol = apiProtocol;
         dataContainerName = "data";
         dataIdName = "id";
         break;
