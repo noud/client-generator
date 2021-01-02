@@ -14,6 +14,8 @@ API Platform Client Generator is a generator to scaffold app with Create-Retriev
 
 Works especially well with APIs built with the [API Platform](https://api-platform.com) framework.
 
+Also works with APIs built with the [InfyOmLabs Laravel Generator](https://www.infyom.com/open-source).
+
 ## Documentation
 
 The documentation of API Platform's Client Generator can be browsed [on the official website](https://api-platform.com/docs/client-generator).
@@ -36,16 +38,14 @@ or
 npx @api-platform/client-generator https://demo.api-platform.com/docs.json output/ --resource Book --format openapi2
 ```
 
-**OpenAPI v3** (experimental)
-```sh
-npx @api-platform/client-generator https://demo.api-platform.com/docs.json?spec_version=3 output/ --resource Book --format openapi3
-```
-
-Also works with APIs built with the [InfyOmLabs Laravel Generator](https://www.infyom.com/open-source).
-
 **OpenAPI v2 (formerly known as Swagger)** (experimental and only for the React/Redux client)
 ```sh
 npx @api-platform/client-generator https://demo.example.com/docs.json output/ --resource Book --format infyom
+```
+
+**OpenAPI v3** (experimental)
+```sh
+npx @api-platform/client-generator https://demo.api-platform.com/docs.json?spec_version=3 output/ --resource Book --format openapi3
 ```
 
 ## Features
