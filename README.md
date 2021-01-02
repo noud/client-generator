@@ -45,7 +45,7 @@ Also works with APIs built with the [InfyOmLabs Laravel Generator](https://www.i
 
 **OpenAPI v2 (formerly known as Swagger)** (experimental and only for the React/Redux client)
 ```sh
-npx @api-platform/client-generator https://demo.example.com/docs.json output/ --resource Book --format swagger-infyom
+npx @api-platform/client-generator https://demo.example.com/docs.json output/ --resource Book --format infyom
 ```
 
 ## Features
