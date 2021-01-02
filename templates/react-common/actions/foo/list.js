@@ -18,12 +18,35 @@ export function success(retrieved) {
   return { type: '{{{uc}}}_LIST_SUCCESS', retrieved };
 }
 
-export function list(page = '{{{name}}}') {
+export function list(page) {
+
+  if (!page) {
+    switch ('swagger') {
+      case "swagger":
+      case "openapi3":
+          page = 1;
+        break;
+      default:
+        page = '{{{name}}}'
+    }
+  }
+
   return dispatch => {
     dispatch(loading(true));
     dispatch(error(''));
 
-    fetch(page)
+    let options = [];
+    switch ('swagger') {
+      case "swagger":
+      case "openapi3":
+          page = '?page=' + page;
+          options.entity = '{{{name}}}';
+          options.page = page;
+        break;
+      default:
+    }
+
+    fetch(page, options)
       .then(response =>
         response
           .json()

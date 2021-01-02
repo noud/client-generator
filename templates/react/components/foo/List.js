@@ -105,12 +105,15 @@ class List extends Component {
     const view = this.props.retrieved && this.props.retrieved['hydra:view'];
     if (!view || !view['hydra:first']) return;
 
-    const {
+    var {
       'hydra:first': first,
       'hydra:previous': previous,
       'hydra:next': next,
       'hydra:last': last
     } = view;
+    previous = previous ? previous.replace('\?page=', '') : null;
+    next = next ? next.replace('\?page=', '') : null;
+    last = last.replace('\?page=', '');
 
     return (
       <nav aria-label="Page navigation">

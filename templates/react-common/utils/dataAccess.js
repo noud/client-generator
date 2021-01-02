@@ -5,6 +5,14 @@ import has from 'lodash/has';
 import mapValues from 'lodash/mapValues';
 
 const MIME_TYPE = 'application/ld+json';
+let MIME_TYPE = 'application/ld+json';
+switch ('{{{dataProtocol}}}') {
+  case "swagger":
+  case "openapi3":
+    MIME_TYPE = 'application/json';
+    break;
+  default:
+}
 
 export function fetch(id, options = {}) {
   if ('undefined' === typeof options.headers) options.headers = new Headers();
@@ -23,9 +31,14 @@ export function fetch(id, options = {}) {
       case "swagger":
       case "openapi3":
         if (options.entity) {
-          entryPoint += options.entity + '/';
+          entryPoint += options.entity;
+          if (!options.page) {
+            entryPoint += '/';
+          }
         }
-      }
+        break;
+      default:
+    }
 
     return global.fetch(new URL(id, entryPoint), options).then(response => {
     if (response.ok) return response;
