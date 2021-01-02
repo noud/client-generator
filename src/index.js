@@ -37,6 +37,7 @@ program
     `${__dirname}/../templates/`
   )
   .option("-f, --format [hydra|swagger]", '"hydra" or "swagger', "hydra")
+  // .option("-f, --format [hydra|swagger|infyom]", '"hydra" or "swagger" or "infyom', "hydra")
   .option(
     "-s, --server-path [serverPath]",
     "Path to express server file to allow route dynamic addition (Next.js generator only)"
@@ -84,6 +85,7 @@ const parser = entrypointWithSlash => {
   }
   switch (program.format) {
     case "swagger":
+    case "infyom":
       return parseSwaggerDocumentation(entrypointWithSlash);
     case "openapi3":
       return parseOpenApi3Documentation(entrypointWithSlash);
