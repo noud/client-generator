@@ -22,7 +22,7 @@ export function list(page) {
 
   if (!page) {
     switch ('{{{dataProtocol}}}') {
-      case "swagger-infyom":
+      case "infyom":
           page = 1;
         break;
       default:
@@ -36,7 +36,7 @@ export function list(page) {
 
     let options = [];
     switch ('{{{dataProtocol}}}') {
-      case "swagger-infyom":
+      case "infyom":
           page = '?page=' + page;
           options.entity = '{{{name}}}';
           options.page = page;

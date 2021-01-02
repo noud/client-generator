@@ -6,7 +6,7 @@ import mapValues from 'lodash/mapValues';
 
 let MIME_TYPE = 'application/ld+json';
 switch ('{{{dataProtocol}}}') {
-  case "swagger-infyom":
+  case "infyom":
     MIME_TYPE = 'application/json';
     break;
   default:
@@ -26,7 +26,7 @@ export function fetch(id, options = {}) {
 
     let entryPoint = ENTRYPOINT;
     switch ('{{{dataProtocol}}}') {
-      case "swagger-infyom":
+      case "infyom":
         if (options.entity) {
           entryPoint += options.entity;
           if (!options.page) {

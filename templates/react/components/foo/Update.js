@@ -36,7 +36,7 @@ class Update extends Component {
     if (window.confirm('Are you sure you want to delete this item?')) {
       let item = this.props.retrieved;
       switch ('{{{dataProtocol}}}') {
-        case "swagger-infyom":
+        case "infyom":
           if (item) {
             item = item.data;
           }
@@ -53,7 +53,7 @@ class Update extends Component {
 
     let thisPropsRetrieved = this.props.retrieved;
     switch ('{{{dataProtocol}}}') {
-      case "swagger-infyom":
+      case "infyom":
         if (thisPropsRetrieved) {
           thisPropsRetrieved = thisPropsRetrieved.data;
         }

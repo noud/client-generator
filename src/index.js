@@ -88,8 +88,9 @@ const parser = entrypointWithSlash => {
   }
   switch (program.format) {
     case "swagger":
-    case "infyom":
       return parseSwaggerDocumentation(entrypointWithSlash);
+    case "infyom":
+      return parseSwaggerDocumentation(entrypointWithSlash, "foreign_key_id");
     case "openapi3":
       return parseOpenApi3Documentation(entrypointWithSlash);
     default:

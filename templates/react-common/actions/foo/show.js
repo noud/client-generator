@@ -23,7 +23,7 @@ export function retrieve(id) {
 
     let options = null;
     switch ('{{{dataProtocol}}}') {
-      case "swagger-infyom":
+      case "infyom":
         options = {entity: '{{{lc}}}'};
         break;
       default:
