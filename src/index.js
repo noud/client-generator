@@ -36,7 +36,7 @@ program
     "The templates directory base to use. Final directory will be ${templateDirectory}/${generator}",
     `${__dirname}/../templates/`
   )
-  .option("-f, --format [hydra|swagger]", '"hydra" or "swagger', "hydra")
+  .option("-f, --format [hydra|swagger|infyom]", '"hydra" or "swagger', "hydra")
   // .option("-f, --format [hydra|swagger|infyom]", '"hydra" or "swagger" or "infyom', "hydra")
   .option(
     "-s, --server-path [serverPath]",
