@@ -28,6 +28,9 @@ export function retrieve(id) {
     switch ('{{{dataProtocol}}}') {
       case "infyom":
         options = {entity: '{{{lc}}}'};
+        break;
+      default:
+        // do nothing
     }
     return fetch(id, options)
       .then(response =>
