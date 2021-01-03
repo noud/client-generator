@@ -1,4 +1,5 @@
 import { fetch } from '../../utils/dataAccess';
+import { storeLinkSettings } from '../../utils/links';
 
 export function error(error) {
   return { type: '{{{uc}}}_DELETE_ERROR', error };
@@ -16,17 +17,9 @@ export function del(item) {
   return dispatch => {
     dispatch(loading(true));
 
-    let options = {
+    return fetch(item['{{{dataIdName}}}'], storeLinkSettings('{{{lc}}}', {
       method: 'DELETE'
-    };
-    switch ('{{{dataProtocol}}}') {
-      case "infyom":
-        options = {entity: '{{{lc}}}'};
-        break;
-      default:
-        // do nothing
-    }
-    return fetch(item['{{{dataIdName}}}'], options)
+    }))
       .then(() => {
         dispatch(loading(false));
         dispatch(success(item));

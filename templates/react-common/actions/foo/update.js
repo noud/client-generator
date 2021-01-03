@@ -5,6 +5,7 @@ import {
   normalize,
   mercureSubscribe as subscribe
 } from '../../utils/dataAccess';
+import { storeLinkSettings } from '../../utils/links';
 import { success as createSuccess } from './create';
 import { loading, error } from './delete';
 
@@ -24,15 +25,7 @@ export function retrieve(id) {
   return dispatch => {
     dispatch(retrieveLoading(true));
 
-    let options = null;
-    switch ('{{{dataProtocol}}}') {
-      case "infyom":
-        options = {entity: '{{{lc}}}'};
-        break;
-      default:
-        // do nothing
-    }
-    return fetch(id, options)
+    return fetch(id, storeLinkSettings('{{{lc}}}'))
       .then(response =>
         response
           .json()

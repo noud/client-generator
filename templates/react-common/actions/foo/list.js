@@ -4,6 +4,7 @@ import {
   extractHubURL,
   mercureSubscribe as subscribe
 } from '../../utils/dataAccess';
+import { storePaginationSettings } from '../../utils/pagination';
 import { success as deleteSuccess } from './delete';
 
 export function error(error) {
@@ -34,17 +35,9 @@ export function list(page) {
     dispatch(loading(true));
     dispatch(error(''));
 
-    let options = [];
-    switch ('{{{dataProtocol}}}') {
-      case "infyom":
-          page = '?page=' + page;
-          options.entity = '{{{name}}}';
-          options.page = page;
-        break;
-      default:
-    }
+    let pagination = storePaginationSettings(page, '{{{name}}}');
 
-    fetch(page, options)
+    fetch(pagination.page, pagination)
       .then(response =>
         response
           .json()

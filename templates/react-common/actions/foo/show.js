@@ -4,6 +4,7 @@ import {
   normalize,
   mercureSubscribe as subscribe
 } from '../../utils/dataAccess';
+import { storeLinkSettings } from '../../utils/links';
 
 export function error(error) {
   return { type: '{{{uc}}}_SHOW_ERROR', error };
@@ -21,15 +22,7 @@ export function retrieve(id) {
   return dispatch => {
     dispatch(loading(true));
 
-    let options = null;
-    switch ('{{{dataProtocol}}}') {
-      case "infyom":
-        options = {entity: '{{{lc}}}'};
-        break;
-      default:
-        // do nothing
-    }
-    return fetch(id, options)
+    return fetch(id, storeLinkSettings('{{{lc}}}'))
       .then(response =>
         response
           .json()

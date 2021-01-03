@@ -15,6 +15,9 @@ export default class extends BaseGenerator {
 
       // utils
       "utils/dataAccess.js",
+      "utils/links.js",
+      "utils/pagination.js",
+      "utils/payload.js",
 
       // reducers
       "reducers/foo/create.js",
@@ -143,6 +146,22 @@ combineReducers({ ${titleLc},/* ... */ }),
     this.createFile(
       "utils/dataAccess.js",
       `${dir}/utils/dataAccess.js`,
+      context,
+      false
+    );
+
+    this.createFile("utils/links.js", `${dir}/utils/links.js`, context, false);
+
+    this.createFile(
+      "utils/pagination.js",
+      `${dir}/utils/pagination.js`,
+      context,
+      false
+    );
+
+    this.createFile(
+      "utils/payload.js",
+      `${dir}/utils/payload.js`,
       context,
       false
     );

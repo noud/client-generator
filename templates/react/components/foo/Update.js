@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import Form from './Form';
 import { retrieve, update, reset } from '../../actions/{{{lc}}}/update';
 import { del } from '../../actions/{{{lc}}}/delete';
+import { getPayload } from '../../utils/payload';
 
 class Update extends Component {
   static propTypes = {
@@ -34,34 +35,14 @@ class Update extends Component {
 
   del = () => {
     if (window.confirm('Are you sure you want to delete this item?')) {
-      let item = this.props.retrieved;
-      switch ('{{{dataProtocol}}}') {
-        case "infyom":
-          if (item) {
-            item = item.data;
-          }
-          break;
-        default:
-          // do nothing
-      }
-      this.props.del(item);
+      this.props.del(getPayload(this.props.retrieved));
     }
   };
 
   render() {
     if (this.props.deleted) return <Redirect to=".." />;
 
-    let thisPropsRetrieved = this.props.retrieved;
-    switch ('{{{dataProtocol}}}') {
-      case "infyom":
-        if (thisPropsRetrieved) {
-          thisPropsRetrieved = thisPropsRetrieved.data;
-        }
-        break;
-      default:
-        // do nothing
-    }
-    const item = this.props.updated ? this.props.updated : thisPropsRetrieved;
+    const item = this.props.updated ? this.props.updated : getPayload(this.props.retrieved);
 
     return (
       <div>

@@ -4,6 +4,8 @@ import { Link, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Form from './Form';
 import { create, reset } from '../../actions/{{{lc}}}/create';
+import { linkStringForFrontEnd } from '../../utils/links';
+import { getPayload } from '../../utils/payload';
 
 class Create extends Component {
   static propTypes = {
@@ -19,20 +21,11 @@ class Create extends Component {
   }
 
   render() {
-    let thisPropsCreated = this.props.created;
-    switch ('{{{dataProtocol}}}') {
-      case "infyom":
-        if (thisPropsCreated) {
-          thisPropsCreated = thisPropsCreated.data;
-        }
-        break;
-      default:
-        // do nothing
-    }
+    const thisPropsCreated = getPayload(this.props.created);
     if (thisPropsCreated)
       return (
         <Redirect
-          to={`edit/${encodeURIComponent(thisPropsCreated['{{{dataIdName}}}'])}`}
+          to={`edit/${linkStringForFrontEnd(encodeURIComponent(thisPropsCreated['{{{dataIdName}}}']), '{{{name}}}')}`}
         />
       );
 

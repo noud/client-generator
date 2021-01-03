@@ -4,6 +4,7 @@ import { Link, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { retrieve, reset } from '../../actions/{{{lc}}}/show';
 import { del } from '../../actions/{{{lc}}}/delete';
+import { getPayload } from '../../utils/payload';
 
 class Show extends Component {
   static propTypes = {
@@ -29,33 +30,14 @@ class Show extends Component {
 
   del = () => {
     if (window.confirm('Are you sure you want to delete this item?')) {
-      let item = this.props.retrieved;
-      switch ('{{{dataProtocol}}}') {
-        case "infyom":
-          if (item) {
-            item = item.data;
-          }
-          break;
-        default:
-          // do nothing
-      }
-      this.props.del(item);
+      this.props.del(getPayload(this.props.retrieved));
     }
   };
 
   render() {
     if (this.props.deleted) return <Redirect to=".." />;
 
-    let item = this.props.retrieved;
-    switch ('{{{dataProtocol}}}') {
-      case "infyom":
-        if (item) {
-          item = item.data;
-        }
-        break;
-      default:
-        // do nothing
-    }
+    let item = getPayload(this.props.retrieved);
 
     return (
       <div>
