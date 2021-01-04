@@ -64,20 +64,11 @@ export function update(item, values) {
     dispatch(createSuccess(null));
     dispatch(updateLoading(true));
 
-    // @todo make like in delete action
-    let options = {
+    return fetch(item['{{{dataIdName}}}'], storeLinkSettings('{{{name}}}', {
       method: 'PUT',
       headers: new Headers({ 'Content-Type': 'application/ld+json' }),
       body: JSON.stringify(values)
-    };
-    switch ('{{{dataProtocol}}}') {
-      case "infyom":
-        options = {entity: '{{{name}}}'};
-        break;
-      default:
-        // do nothing
-    }
-    return fetch(item['{{{dataIdName}}}'], options)
+    }))
       .then(response =>
         response
           .json()
