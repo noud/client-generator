@@ -35,7 +35,7 @@ export function list(page) {
     dispatch(loading(true));
     dispatch(error(''));
 
-    let pagination = storePaginationSettings(page, '{{{name}}}');
+    let pagination = storePaginationSettings(page - 1, '{{{name}}}');
 
     fetch(pagination.page, pagination)
       .then(response =>
