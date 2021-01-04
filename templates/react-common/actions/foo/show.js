@@ -22,7 +22,7 @@ export function retrieve(id) {
   return dispatch => {
     dispatch(loading(true));
 
-    return fetch(id, storeLinkSettings('{{{lc}}}'))
+    return fetch(id, storeLinkSettings('{{{name}}}'))
       .then(response =>
         response
           .json()

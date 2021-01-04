@@ -17,7 +17,7 @@ export function del(item) {
   return dispatch => {
     dispatch(loading(true));
 
-    return fetch(item['{{{dataIdName}}}'], storeLinkSettings('{{{lc}}}', {
+    return fetch(item['{{{dataIdName}}}'], storeLinkSettings('{{{name}}}', {
       method: 'DELETE'
     }))
       .then(() => {

@@ -25,7 +25,7 @@ export function retrieve(id) {
   return dispatch => {
     dispatch(retrieveLoading(true));
 
-    return fetch(id, storeLinkSettings('{{{lc}}}'))
+    return fetch(id, storeLinkSettings('{{{name}}}'))
       .then(response =>
         response
           .json()
@@ -64,6 +64,7 @@ export function update(item, values) {
     dispatch(createSuccess(null));
     dispatch(updateLoading(true));
 
+    // @todo make like in delete action
     let options = {
       method: 'PUT',
       headers: new Headers({ 'Content-Type': 'application/ld+json' }),
@@ -71,7 +72,7 @@ export function update(item, values) {
     };
     switch ('{{{dataProtocol}}}') {
       case "infyom":
-        options = {entity: '{{{lc}}}'};
+        options = {entity: '{{{name}}}'};
         break;
       default:
         // do nothing
