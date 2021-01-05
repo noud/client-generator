@@ -1,15 +1,7 @@
 import { ENTRYPOINT } from '../config/entrypoint';
 
 export function paginationStringForFrontEnd(paginationString, pluralEntityName) {
-  switch ('{{{dataProtocol}}}') {
-    case "infyom":
-      paginationString = paginationString.replace('\?page=', '');
-      break;
-    default:
-      paginationString = paginationString.replace('\/' + pluralEntityName + '\?page=', '');
-  }
-
-  return paginationString;
+  return paginationString.replace('\/' + pluralEntityName + '\?page=', '');
 }
 
 export function paginationStringForBackEnd(paginationSettings) {
