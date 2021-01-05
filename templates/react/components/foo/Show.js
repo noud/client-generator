@@ -37,7 +37,7 @@ class Show extends Component {
   render() {
     if (this.props.deleted) return <Redirect to=".." />;
 
-    let item = getPayload(this.props.retrieved);
+    const item = getPayload(this.props.retrieved);
 
     return (
       <div>
