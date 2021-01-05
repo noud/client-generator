@@ -16,13 +16,7 @@ export function paginationStringForBackEnd(paginationSettings) {
   var entryPoint = ENTRYPOINT;
 
   if (paginationSettings.entity) {
-    switch ('{{{dataProtocol}}}') {
-      case "infyom":
-          entryPoint += paginationSettings.entity;
-        break;
-      default:
-        entryPoint += '/' + paginationSettings.entity;
-    }
+    entryPoint += paginationSettings.entity;
     if (!paginationSettings.page) {
       entryPoint += '/';
     }
@@ -36,13 +30,15 @@ export function storePaginationSettings(page, pluralEntityName) {
 
   switch ('{{{dataProtocol}}}') {
     case "infyom":
-      options = {
-        entity: pluralEntityName,
-        page: '?page=' + page
-      }
+      page -= 1;
       break;
     default:
       // do nothing
+  }
+
+  options = {
+    entity: pluralEntityName,
+    page: '?page=' + page
   }
 
   return options;

@@ -19,23 +19,13 @@ export function success(retrieved) {
   return { type: '{{{uc}}}_LIST_SUCCESS', retrieved };
 }
 
-export function list(page) {
-
-  if (!page) {
-    switch ('{{{dataProtocol}}}') {
-      case "infyom":
-          page = 1;
-        break;
-      default:
-        page = '{{{name}}}'
-    }
-  }
+export function list(page = 1) {
 
   return dispatch => {
     dispatch(loading(true));
     dispatch(error(''));
 
-    let pagination = storePaginationSettings(page - 1, '{{{name}}}');
+    let pagination = storePaginationSettings(page, '{{{name}}}');
 
     fetch(pagination.page, pagination)
       .then(response =>

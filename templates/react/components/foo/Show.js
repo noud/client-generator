@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { retrieve, reset } from '../../actions/{{{lc}}}/show';
 import { del } from '../../actions/{{{lc}}}/delete';
 import { getPayload } from '../../utils/payload';
+import { linkStringForFrontEnd } from '../../utils/links';
 
 class Show extends Component {
   static propTypes = {
@@ -83,7 +84,7 @@ class Show extends Component {
           Back to list
         </Link>
         {item && (
-          <Link to={`/{{{name}}}/edit/${encodeURIComponent(item['{{{dataIdName}}}'])}`}>
+          <Link to={`/{{{name}}}/edit/${linkStringForFrontEnd(encodeURIComponent(item['{{{dataIdName}}}']), '{{{name}}}')}`}>
             <button className="btn btn-warning">Edit</button>
           </Link>
         )}
@@ -101,8 +102,10 @@ class Show extends Component {
       ));
     }
 
+    let linkString = linkStringForFrontEnd(encodeURIComponent(items), type);
+
     return (
-      <Link to={`../../${type}/show/${encodeURIComponent(items)}`}>
+      <Link to={`../../${type}/show/${linkString}`}>
         {items}
       </Link>
     );
