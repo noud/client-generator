@@ -8,6 +8,9 @@ import {
 import { storeLinkSettings } from '../../utils/links';
 import { success as createSuccess } from './create';
 import { loading, error } from './delete';
+import { getMimeType } from '../../utils/mimeType';
+
+const MIME_TYPE = getMimeType();
 
 export function retrieveError(retrieveError) {
   return { type: '{{{uc}}}_UPDATE_RETRIEVE_ERROR', retrieveError };
@@ -66,7 +69,7 @@ export function update(item, values) {
 
     return fetch(item['{{{dataIdName}}}'], storeLinkSettings('{{{name}}}', {
       method: 'PUT',
-      headers: new Headers({ 'Content-Type': 'application/ld+json' }),
+      headers: new Headers({ 'Content-Type': MIME_TYPE }),
       body: JSON.stringify(values)
     }))
       .then(response =>

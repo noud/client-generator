@@ -4,14 +4,9 @@ import get from 'lodash/get';
 import has from 'lodash/has';
 import mapValues from 'lodash/mapValues';
 import { paginationStringForBackEnd } from '../utils/pagination';
+import { getMimeType } from '../utils/mimeType';
 
-let MIME_TYPE = 'application/ld+json';
-switch ('{{{dataProtocol}}}') {
-  case "infyom":
-    MIME_TYPE = 'application/json';
-    break;
-  default:
-}
+const MIME_TYPE = getMimeType();
 
 export function fetch(id, options = {}) {
   if ('undefined' === typeof options.headers) options.headers = new Headers();
