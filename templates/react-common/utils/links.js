@@ -9,6 +9,6 @@ export function linkStringForFrontEnd(linkString, pluralEntityName) {
 }
 
 export function storeLinkSettings(pluralEntityName, options = {}) {
-  options = {entity: pluralEntityName};
+  options.entity = pluralEntityName;
   return options;
 }
