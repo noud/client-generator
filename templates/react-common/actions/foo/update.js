@@ -40,7 +40,7 @@ export function retrieve(id) {
         dispatch(retrieveLoading(false));
         dispatch(retrieveSuccess(retrieved));
 
-        if (hubURL) dispatch(mercureSubscribe(hubURL, retrieved['{{{dataIdName}}}']));
+        if (hubURL) dispatch(mercureSubscribe(hubURL, retrieved['@id']));
       })
       .catch(e => {
         dispatch(retrieveLoading(false));
@@ -83,7 +83,7 @@ export function update(item, values) {
         dispatch(updateLoading(false));
         dispatch(updateSuccess(retrieved));
 
-        if (hubURL) dispatch(mercureSubscribe(hubURL, retrieved['{{{dataIdName}}}']));
+        if (hubURL) dispatch(mercureSubscribe(hubURL, retrieved['@id']));
       })
       .catch(e => {
         dispatch(updateLoading(false));

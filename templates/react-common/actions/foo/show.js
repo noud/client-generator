@@ -34,7 +34,7 @@ export function retrieve(id) {
         dispatch(loading(false));
         dispatch(success(retrieved));
 
-        if (hubURL) dispatch(mercureSubscribe(hubURL, retrieved['{{{dataIdName}}}']));
+        if (hubURL) dispatch(mercureSubscribe(hubURL, retrieved['@id']));
       })
       .catch(e => {
         dispatch(loading(false));

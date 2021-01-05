@@ -53,7 +53,7 @@ export function list(page) {
           dispatch(
             mercureSubscribe(
               hubURL,
-              retrieved['hydra:member'].map(i => i['{{{dataIdName}}}'])
+              retrieved['hydra:member'].map(i => i['@id'])
             )
           );
       })
