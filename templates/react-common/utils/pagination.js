@@ -15,18 +15,18 @@ export function paginationStringForFrontEnd(paginationString, pluralEntityName) 
 export function paginationStringForBackEnd(paginationSettings) {
   var entryPoint = ENTRYPOINT;
 
-      if (paginationSettings.entity) {
-        switch ('{{{dataProtocol}}}') {
-          case "infyom":
-              entryPoint += paginationSettings.entity;
-            break;
-          default:
-            entryPoint += '/' + paginationSettings.entity;
-        }
-        if (!paginationSettings.page) {
-          entryPoint += '/';
-        }
-      }
+  if (paginationSettings.entity) {
+    switch ('{{{dataProtocol}}}') {
+      case "infyom":
+          entryPoint += paginationSettings.entity;
+        break;
+      default:
+        entryPoint += '/' + paginationSettings.entity;
+    }
+    if (!paginationSettings.page) {
+      entryPoint += '/';
+    }
+  }
 
   return entryPoint;
 }

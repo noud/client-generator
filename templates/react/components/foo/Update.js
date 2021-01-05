@@ -42,7 +42,7 @@ class Update extends Component {
   render() {
     if (this.props.deleted) return <Redirect to=".." />;
 
-    const item = this.props.updated ? this.props.updated : getPayload(this.props.retrieved);
+    const item = this.props.updated ? getPayload(this.props.updated) : getPayload(this.props.retrieved);
 
     return (
       <div>

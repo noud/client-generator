@@ -5,8 +5,8 @@ export function getPayload(payload) {
         payload = payload.data;
       }
       break;
+    default:
       // do nothing
-      default:
   }
 
   return payload;

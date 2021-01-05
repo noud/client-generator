@@ -20,7 +20,7 @@ export function fetch(id, options = {}) {
   )
     options.headers.set('Content-Type', MIME_TYPE);
 
-    return global.fetch(new URL(id, paginationStringForBackEnd(options)), options).then(response => {
+  return global.fetch(new URL(id, paginationStringForBackEnd(options)), options).then(response => {
     if (response.ok) return response;
 
     return response.json().then(
